@@ -85,3 +85,19 @@ end
 def read_featured
   YAML.load_file(File.expand_path("featured.yml", LUCKY_ROOT))
 end
+
+def sample_pack_history_filename
+  File.expand_path("data/sample_pack_history.yml", LUCKY_ROOT)
+end
+
+def read_sample_pack_history
+  YAML.load_file(sample_pack_history_filename)
+end
+
+def update_sample_pack_history
+  File.write(sample_pack_history_filename,
+    Dir.glob("#{File.expand_path("packs", LUCKY_ROOT)}/*.zip").map do |fn|
+      fn.gsub(/.*lucky_samples-(\d+)\.zip/, '\1')
+    end.sort.to_yaml
+  )
+end

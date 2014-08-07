@@ -2,4 +2,5 @@
 LUCKY_ROOT = File.dirname(__FILE__)
 require_relative 'lib/refresh'
 
+update_sample_pack_history
 refresh_index

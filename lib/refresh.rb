@@ -9,6 +9,8 @@ end
 def make_samples(t)
   `ruby "/home/icy/docs/codes/IceDragon/kana/LuckySamples/bin/kana-lucky_samples" -s #{t} -f "#{IndexFormat.pack_link_full(t)}"`
 
+  update_sample_pack_history
+
   begin
     nm = "/home/icy/.wine/drive_c/luckysample/luckysample-#{t}"
     FileUtils::Verbose.mkdir_p(nm)
@@ -28,6 +30,8 @@ def refresh_index
   }
   data[:current_pack] = pack_link(data[:current])
   data[:last_pack] = pack_link(data[:last])
+  data[:sample_pack_history] = read_sample_pack_history
+
   File.write(File.expand_path("index.html", LUCKY_ROOT),
              eruby.result(data))
   STDERR.puts "Refreshed index"

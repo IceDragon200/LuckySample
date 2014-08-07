@@ -2,46 +2,72 @@
   <head>
     <title>Lucky Samples</title>
     <link rel="stylesheet" type="text/css" href="./public/css/main.css" />
+    <link rel="stylesheet" type="text/css" href="./public/css/font-awesome.min.css" />
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,300italic,400,400italic,600,700,900&amp;subset=latin,latin-ext" rel="stylesheet" />
   </head>
   <body>
     <div class="header">
       <div class="content">
-        <h1>Lucky Samples</h1>
+        <h1><i class="fa fa-fw fa-star"></i>Lucky Samples</h1>
         <p>A randomised sample pack that resets every day, challenge your skill as a producer!</p>
       </div>
     </div>
+    <div class="subheader">
+      <div class="subcontent">
+        <a href="<%= current_pack %>" id="current-samples" title="<%= current %>">
+          <div class="big-download">
+            <div class="sq-button">
+              <i class="fa fa-fw fa-download"></i>
+            </div>
+            <div class="desc-tail">
+              Current Samples - <%= current %>
+            </div>
+          </div>
+        </a>
+      </div>
+    </div>
     <div class="content">
-      <h2>Samples (or Goodies)</h2>
-      <h3>Updated <%= Time.at(current.to_i).strftime("on %D @ %T %z") %></h2>
-      <div class="row">
-        <div class="col2">
-          <a href="<%= current_pack %>" id="current-samples"><div class="button">Current Samples - <%= current %></div></a>
-        </div>
-        <div class="col2">
-          <a href="<%= last_pack %>" id="previous-samples"><div class="button">Previous Samples - <%= last %></div></a>
-        </div>
+      <div class="samples" id="samples">
+        <h2>Samples (or Goodies)</h2>
+        <h3>Updated <%= Time.at(current.to_i).strftime("on %D @ %T %z") %></h3>
+        <h4>Sorted by latest first</h4>
         <p>Sample Packs contain 10 samples, in wav, mp3, ogg or aif format</p>
         <p>All sample packs are accompanied by a "origin.yml" and a "README.txt"</p>
+        <div class="sample-list">
+          <% sample_pack_history.reverse.each_slice(4) do |row| %>
+            <div class="row">
+            <% row.each do |pack| %>
+              <div class="col-1_4">
+                <a href="<%= IndexFormat.pack_link(pack) %>" id="samples-<%= pack %>"><div class="button"><i class="fa fa-fw fa-download"></i><%= pack %></div></a>
+              </div>
+            <% end %>
+            </div>
+          <% end %>
+        </div>
       </div>
       <hr />
       <div class="row" id="featured">
         <h2>Featured (shared Goodies)</h2>
         <% featured.each do |hash| %>
-          <div class="col2">
+          <div class="col-1_2">
             <div class="featured">
-              <div class="row">
-                <a href="<%= hash["link"] %>" class="song title"><%= hash["name"] %></a>
+              <div class="col-1_3 big-icon">
+                <i class="fa fa-fw fa-music"></i>
               </div>
-              <div class="row">
-                <a href="<%= hash["artist_link"] %>" class="song artist"><%= hash["artist"] %></a>
-              </div>
-              <p class="level">Level: <%= hash["level"] %></p>
-              <p>Packs: </p>
-              <div class="song packs">
-                <% hash["packs"].sort.reverse.each do |id| %>
-                  <a href="<%= IndexFormat.pack_link(id) %>.zip"><%= id %></a>
-                <% end %>
+              <div class="col-2_3">
+                <div class="row">
+                  <a href="<%= hash["link"] %>" class="song title"><%= hash["name"] %></a>
+                </div>
+                <div class="row">
+                  <a href="<%= hash["artist_link"] %>" class="song artist"><%= hash["artist"] %></a>
+                </div>
+                <p class="level">Level: <%= hash["level"] %></p>
+                <p>Packs: </p>
+                <div class="song packs">
+                  <% hash["packs"].sort.reverse.each do |id| %>
+                    <a href="<%= IndexFormat.pack_link(id) %>.zip"><%= id %></a>
+                  <% end %>
+                </div>
               </div>
             </div>
           </div>
@@ -49,7 +75,7 @@
       </div>
       <hr />
       <h2 id="readme">Readme (no seriously, read it)</h2>
-      <div class="subcontent">
+      <div class="readme">
         <%= IndexFormat.md_file("/home/icy/docs/codes/IceDragon/kana/LuckySamples/README.txt") %>
       </div>
     </div>
