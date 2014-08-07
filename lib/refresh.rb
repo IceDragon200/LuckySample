@@ -22,9 +22,9 @@ end
 def refresh_index
   eruby = Erubis::Eruby.new(File.read(File.expand_path("index.html.erb", LUCKY_ROOT)))
   data = {
-    last: File.read(File.expand_path("last", LUCKY_ROOT)).strip,
-    current: File.read(File.expand_path("current", LUCKY_ROOT)).strip,
-    featured: YAML.load_file(File.expand_path("featured.yml", LUCKY_ROOT)),
+    last: read_last_seed,
+    current: read_current_seed,
+    featured: read_featured,
   }
   data[:current_pack] = pack_link(data[:current])
   data[:last_pack] = pack_link(data[:last])

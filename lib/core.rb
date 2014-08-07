@@ -81,3 +81,7 @@ def rotate_current_seed(newseed, oldseed=read_current_seed)
   write_last_seed(oldseed)
   write_current_seed(newseed)
 end
+
+def read_featured
+  YAML.load_file(File.expand_path("featured.yml", LUCKY_ROOT))
+end
