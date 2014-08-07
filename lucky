@@ -1,0 +1,17 @@
+#!/usr/bin/env ruby
+LUCKY_ROOT = File.dirname(__FILE__)
+require_relative 'lib/core'
+require_relative 'lib/refresh'
+
+puts "Started Lucky Sample regen @ #{Time.now.strftime("%D %T")}"
+
+lastid = read_current_seed
+
+t = Time.now.to_i.to_s
+lastid ||= t
+
+rotate_current_seed t, lastid
+rotate_featured
+
+make_samples(t)
+refresh_index

@@ -1,0 +1,18 @@
+#!/usr/bin/env ruby
+require "highline"
+require_relative 'lib/core'
+
+LUCKY_ROOT = File.dirname(__FILE__)
+
+timethen = Time.at(read_current_seed)
+timenow = Time.now
+
+unless timethen.day != timenow.day
+  abort "Lucky Sample already refreshed for today"
+else
+  if ((timenow.to_i / 60) - (timethen.to_i / 60)) < 24
+    abort "24 hours has not passed"
+  else
+    `exec #{File.expand_path("lucky", File.dirname(__FILE__))}`
+  end
+end

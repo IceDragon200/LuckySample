@@ -1,0 +1,282 @@
+/* http://meyerweb.com/eric/tools/css/reset/
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+  display: block;
+}
+body {
+  line-height: 1;
+}
+ol, ul {
+  list-style: none;
+}
+blockquote, q {
+  quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+  content: '';
+  content: none;
+}
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+body {
+  font-family: 'Source Sans Pro', sans-serif;
+  font-size: 1em;
+  line-height: 1.6; }
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 300; }
+
+h1 {
+  font-size: 4.0em; }
+
+h2 {
+  font-size: 3.0em; }
+
+h3 {
+  font-size: 2.0em; }
+
+h4 {
+  font-size: 1.7em; }
+
+h5 {
+  font-size: 1.5em; }
+
+h6 {
+  font-size: 1.2em; }
+
+a {
+  color: #44A;
+  font-weight: 300;
+  text-decoration: none;
+  transition: 0.25s color; }
+
+a:hover, a:focus, a:active, a:visited {
+  /*font-weight: initial;*/ }
+
+a:hover {
+  color: #77D;
+}
+
+a:focus, a:active {
+  color: #333;
+}
+
+body {
+  color: #333;
+  width: 100%;
+}
+
+small {
+  font-size: 50%;
+}
+
+hr {
+  border: none;
+  padding: none;
+  margin: none;
+  width: 100%;
+  height: 8px;
+  background-color: #233;
+}
+
+em {
+  font-style: italic;
+}
+
+.content {
+  width: 80%;
+  margin: auto;
+  margin-top: 48px;
+  margin-bottom: 48px;
+}
+
+.subcontent {
+  margin-left: 16px;
+  margin-right: 16px;
+}
+
+ol.tracklist li audio {
+  margin-right: 8px;
+  margin-left: 8px;
+}
+
+ol.tracklist li a {
+  font-size: 1.25em;
+  vertical-align: top;
+}
+
+ol.tracklist li dt {
+  font-size: 2.0em;
+  font-weight: 300;
+}
+
+.header, .footer {
+  color: #DCD;
+  background-color: #233;
+}
+
+.header {
+  border-bottom: 8px solid #122;
+}
+
+.footer {
+  border-top: 8px solid #344;
+  padding-bottom: 16px;
+}
+
+.header h1, .footer h1,
+.header h2, .footer h2,
+.header h3, .footer h3,
+.header h4, .footer h4,
+.header h5, .footer h5,
+.header h6, .footer h6
+{
+  text-shadow: rgba(0,0,0,0.2) 0px -2px;
+}
+
+.footer a {
+  color: #777;
+}
+.footer a:hover {
+  color: #AAA;
+}
+
+.highlight {
+  color: #f0ebc1;
+}
+
+.indent0 {
+  margin: 16px;
+}
+
+.indent1 {
+  margin: 16px;
+}
+.indent2 {
+  margin: 32px;
+}
+.indent3 {
+  margin: 48px;
+}
+.indent4 {
+  margin: 64px;
+}
+
+.indent0, .indent1, .indent2, .indent3, .indent4 {
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
+
+.spacer {
+  margin-top: 1em;
+  margin-bottom: 1em;
+}
+
+.row {
+  width: 100%;
+  vertical-align: top;
+}
+
+.col1 {
+  width: 90%;
+  margin-left: 4.5%;
+  margin-right: 4.5%;
+  display: inline-block;
+}
+
+.col2 {
+  width: 45%;
+  margin-left: 2%;
+  margin-right: 2%;
+  display: inline-block;
+}
+
+.col3 {
+  width: 29%;
+  margin-left: 1.0%;
+  margin-right: 1.0%;
+  display: inline-block;
+}
+
+.col1, .col2, .col3 {
+  vertical-align: top;
+}
+
+.button, .featured {
+  width: 100%;
+  background-color: #EEE;
+  padding: 4px;
+  border: 1px solid #DDD;
+  border-radius: 8px;
+  display: inline-block;
+}
+
+.button {
+  text-align: center;
+  transition: 0.25s background-color, 0.25s border-color;
+}
+
+.button:hover {
+  background-color: #FFF;
+  border-color: #EEE;
+}
+
+.button:focus, .button:active {
+  background-color: #DDD;
+  border-color: #CCC;
+  outline: none;
+}
+
+.song.title {
+  font-size: 125%;
+}
+
+.song.artist {
+  font-size: 110%;
+  margin-left: 16px;
+}
+
+.song.packs {
+  font-size: 90%;
+  margin-left: 2px;
+  margin-right: 2px;
+}
+
+.song.packs a {
+  padding: 4px;
+  border-radius: 4px;
+  transition: 0.25s background-color;
+}
+
+.song.packs a:hover {
+  background-color: #344;
+}
