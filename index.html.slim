@@ -1,0 +1,154 @@
+doctype html
+html
+  head
+    title Lucky Samples
+    link rel="stylesheet" type="text/css" href="./public/css/main.css"
+    link rel="stylesheet" type="text/css" href="./public/css/font-awesome.min.css"
+    link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,300italic,400,400italic,600,700,900&amp;subset=latin,latin-ext" rel="stylesheet"
+
+  body#top
+    nav
+      span
+        a data-scroll="" href="#top"
+          i.fa.fa-fw.fa-star
+      ol
+        a data-scroll="" href="#current-samples"
+          li Current Pack
+        a data-scroll="" href="#samples"
+          li Samples
+        a data-scroll="" href="#featured"
+          li Featured
+        a data-scroll="" href="#readme"
+          li Readme
+        a data-scroll="" href="#news"
+          li News
+
+    .header
+      .content.center
+        h1
+          i.fa.fa-fw.fa-star
+          | Lucky Samples
+        /p A randomised sample pack that resets every day, challenge your skill as a producer!
+        p Lucky Sample has been discontinued. See news for details.
+        p Thank you for your support and interest, all current sample packs will remain available.
+    .subheader
+      .subcontent
+        section#current-samples
+          .row
+            .col-1_3
+            .col-1_3
+              a.hlink href="#current-samples"
+                h3.center
+                  i.fa.fa-fw.fa-paperclip
+                  | Current Samples
+              .current-sample-pack
+                a.sample-pack href="#{current_pack}" title="#{current}"
+                  .big-download
+                    .sq-button
+                      i.fa.fa-fw.fa-download
+              .desc-tail
+                = "Current Samples - #{current}"
+                .checksum
+                  = "MD5: #{checksums[current] || "WARNING: CHECKSUM IS MISSING"}"
+            .col-1_3
+
+    .content
+      section.samples#samples
+        a.hlink href="#samples"
+          h2
+            i.fa.fa-fw.fa-paperclip
+            | Samples (or Goodies)
+        h3
+          | Updated
+          i.fa.fa-fw.fa-clock-o
+          = Time.at(current.to_i).strftime("%D @ %T %z")
+        h4 Sorted by latest first
+        p Sample Packs contain 10 samples, in wav, mp3, ogg or aif format
+        p All sample packs are accompanied by a "origin.yml" and a "README.txt"
+        .sample-list
+          - sample_pack_history.reverse.each_slice(4) do |row|
+            .row
+            - row.each do |pack|
+              .col-1_4
+                a href="#{IndexFormat.pack_link(pack)}" id="samples-#{pack}"
+                  .button
+                    i.fa.fa-fw.fa-download
+                    = pack
+                .checksum
+                  = "MD5: #{checksums[pack]}"
+
+      hr
+      section.featured#featured
+        a.hlink href="#featured"
+          h2
+            i.fa.fa-fw.fa-paperclip
+            | Featured (shared Goodies)
+
+        - featured.each do |hash|
+          .col-1_2
+            .featured-item
+              .col-1_3.big-icon
+                i.fa.fa-fw.fa-music
+              .col-2_3
+                .row
+                  a.song.title href="#{hash["link"]}"
+                    = hash["name"]
+                .row
+                  a.song.artist href="#{hash["artist_link"]}"
+                    = hash["artist"]
+                p.level
+                  | Level:
+                  = hash["level"]
+                p Packs:
+                .song.packs
+                  - hash["packs"].sort.reverse.each do |id|
+                    a href="#{IndexFormat.pack_link(id)}"
+                      = id
+      hr
+      section.readme#readme
+        a.hlink href="#readme"
+          h2
+            i.fa.fa-fw.fa-paperclip
+            | Readme (no seriously, read it)
+        .readme-content
+          == IndexFormat.md_file("/home/icy/docs/codes/IceDragon/kana/LuckySamples/README.txt")
+
+      hr
+      section.news#news
+        a.hlink href="#news"
+          h2
+            i.fa.fa-fw.fa-paperclip
+            | News
+        .news-content
+          - news.reverse_each do |article|
+            article
+              .row
+                .col-2_3
+                  span.title
+                    = article[:title]
+                .col-1_3
+                  span.time
+                    i.big-icon.fa.fa-fw.fa-clock-o
+                    = Time.at(article[:timestamp]).strftime("%D @ %T %z")
+              .row
+                .body
+                  = article[:body]
+
+    .footer
+      .content
+        h6 Lucky Samples 2014
+        h6
+          | Page updated
+          = Time.now.strftime("on %D @ %T %z")
+        span
+          | by
+          a href="mailto:mistdragon100@gmail.com"
+            | IceDragon
+
+      .copyright
+        | © 2014 Corey Powell
+
+    footer
+      script src="./public/js/smooth-scroll.js"
+      javascript:
+        smoothScroll.init({speed: 500, easer: "easeInQuad", updateURL: true });
