@@ -1,5 +1,6 @@
 #!/usr/bin/env ruby
 LUCKY_ROOT = File.dirname(__FILE__)
+
 require_relative 'lib/core'
 require_relative 'lib/refresh'
 
@@ -11,7 +12,9 @@ t = Time.now.to_i.to_s
 lastid ||= t
 
 rotate_current_seed t, lastid
-rotate_featured
+rotate_featured t
 
 make_samples(t)
+
+update_sample_pack_history
 refresh_index

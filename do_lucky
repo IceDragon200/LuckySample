@@ -1,0 +1,2 @@
+#!/usr/bin/env bash
+./try_lucky && ./lucky

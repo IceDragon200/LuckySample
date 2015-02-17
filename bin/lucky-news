@@ -1,0 +1,47 @@
+#!/usr/bin/env ruby
+require 'yaml'
+ROOT_PATH = File.expand_path('..', File.dirname(__FILE__))
+
+module LuckyNews
+  def news_filepath
+    File.expand_path('data/news.yml', ROOT_PATH)
+  end
+
+  def news
+    @news
+  end
+
+  def load_news
+    @news = YAML.load_file(news_filepath) || []
+  end
+
+  def save_news
+    File.write(news_filepath, news.to_yaml)
+  end
+
+  def new_article
+    article = {
+      timestamp: Time.now.to_i,
+      title: '',
+      body: ''
+    }
+
+    news << article
+  end
+
+  extend self
+end
+
+LuckyNews.load_news
+
+argv = ARGV.dup
+command = argv.shift
+
+case command
+when 'new'
+  LuckyNews.new_article
+else
+  abort "USAGE: #{File.basename(__FILE__)} (new)"
+end
+
+LuckyNews.save_news

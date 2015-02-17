@@ -1,8 +1,9 @@
 #!/usr/bin/env ruby
 LUCKY_ROOT = File.dirname(__FILE__)
+
 require_relative 'lib/refresh'
 
-timestamp = File.read(File.expand_path("current", LUCKY_ROOT)).strip.to_i
+timestamp = read_current_seed
 
 unless File.exist?(IndexFormat.pack_link_full(timestamp))
   make_samples(timestamp)

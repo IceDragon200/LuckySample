@@ -1,0 +1,31 @@
+---
+- name: Lucky Samples 1
+  link: https://soundcloud.com/efeqt/lucky-samples-1
+  artist: eFeqt
+  artist_link: https://soundcloud.com/efeqt
+  packs:
+  - 1404281672
+  level: Easy
+  src: http://www.mediafire.com/download/15b8li7nue63pxe/lucky+samples+%231.zip
+  note: ""
+
+- name: Lucky Sample Attempt
+  link: https://soundcloud.com/creatur3d/lucky-sample-attempt/s-b0E1v
+  artist: CREATUR3D
+  artist_link: https://soundcloud.com/creatur3d
+  packs:
+  - 1404271057
+  - 1404281672
+  level: Easy
+  src: nil
+  note: ""
+
+- name: Turn To
+  link: https://soundcloud.com/icedragon200/turn-to
+  artist: IceDragon
+  artist_link: https://soundcloud.com/creatur3d
+  packs:
+  - 1404281672
+  level: Hard
+  src: https://www.dropbox.com/s/nh4udymhle6ydnp/ls1404281672.zip
+  note: ""

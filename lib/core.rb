@@ -1,11 +1,11 @@
-require "erubis"
-require "fileutils"
-require "redcarpet"
+#require "erubis"
+require 'fileutils'
+require 'redcarpet'
 require 'tilt'
-require "yaml"
+require 'yaml'
+require 'digest/md5'
 
 module IndexFormat
-
   def self.md_file(filename)
     extensions = {
       autolink:            true,
@@ -94,10 +94,40 @@ def read_sample_pack_history
   YAML.load_file(sample_pack_history_filename)
 end
 
+def get_pack_list
+  Dir.glob("#{File.expand_path("packs", LUCKY_ROOT)}/*.zip")
+end
+
 def update_sample_pack_history
   File.write(sample_pack_history_filename,
-    Dir.glob("#{File.expand_path("packs", LUCKY_ROOT)}/*.zip").map do |fn|
+    get_pack_list.map do |fn|
       fn.gsub(/.*lucky_samples-(\d+)\.zip/, '\1')
     end.sort.to_yaml
   )
+  STDERR.puts "[LS] update_sample_pack_history"
+end
+
+def read_news
+  YAML.load_file(File.expand_path("data/news.yml", LUCKY_ROOT))
+end
+
+def checksums_filename
+  filename = File.expand_path("data/checksums.yml", LUCKY_ROOT)
+end
+
+def write_checksums(checksums)
+  File.write(checksums_filename, checksums.to_yaml)
+end
+
+def read_checksums
+  YAML.load_file(checksums_filename)
+end
+
+def update_checksums
+  checksums = read_checksums || {}
+  for fn in get_pack_list
+    id = fn.gsub(/.*lucky_samples-(\d+)\.zip/, '\1')
+    checksums[id] ||= Digest::MD5.file(fn).hexdigest
+  end
+  write_checksums(checksums)
 end
