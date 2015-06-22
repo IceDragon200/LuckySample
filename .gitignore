@@ -1,3 +1,4 @@
-data/
-packs/
+/.sass-cache
+/data
+/packs
 index.html
