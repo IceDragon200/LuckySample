@@ -1,3 +1,4 @@
+- mediafire_link = 'https://www.mediafire.com/folder/7xiuv74309cr2/LuckySamples'
 doctype html
 html
   head
@@ -42,7 +43,7 @@ html
                   i.fa.fa-fw.fa-paperclip
                   | Current Samples
               .current-sample-pack
-                a.sample-pack href="#{current_pack}" title="#{current}"
+                a.sample-pack href="#{mediafire_link || current_pack}" title="#{current}"
                   .big-download
                     .sq-button
                       i.fa.fa-fw.fa-download
@@ -70,7 +71,7 @@ html
             .row
             - row.each do |pack|
               .col-1_4
-                a href="#{IndexFormat.pack_link(pack)}" id="samples-#{pack}"
+                a href="#{mediafire_link || IndexFormat.pack_link(pack)}" id="samples-#{pack}"
                   .button
                     i.fa.fa-fw.fa-download
                     = pack
@@ -102,7 +103,7 @@ html
                 p Packs:
                 .song.packs
                   - hash["packs"].sort.reverse.each do |id|
-                    a href="#{IndexFormat.pack_link(id)}"
+                    a href="#{mediafire_link || IndexFormat.pack_link(id)}"
                       = id
       hr
       section.readme#readme
