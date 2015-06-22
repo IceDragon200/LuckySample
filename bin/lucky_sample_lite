@@ -1,0 +1,16 @@
+#!/usr/bin/env ruby
+require 'yaml'
+require 'fileutils'
+require 'lucky_sample/config'
+require 'lucky_sample/sample_map'
+
+config = LuckySample::Config.create
+LuckySample.generate_sample_map(config)
+
+samples = YAML.load_file(sample_map_path)
+selected_samples = 10.times.map { samples.sample }
+target_dirname = "samples-#{Time.now.to_i}"
+FileUtils.mkdir_p target_dirname
+selected_samples.each do |filename|
+  FileUtils.cp filename, target_dirname
+end

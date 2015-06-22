@@ -1,0 +1,10 @@
+#!/usr/bin/env ruby
+# Used to regenerate the samplemap.yml
+# This may take a few minutes, and it may need to be changed to a
+# sql database or something else which is faster to access and possibly smaller.
+require 'lucky_sample/config'
+require 'lucky_sample/sample_map'
+
+config = LuckySample::Config.create
+samples = LuckySample.generate_sample_map(config)
+puts "Samples Available: #{samples.size}"

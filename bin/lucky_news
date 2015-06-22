@@ -1,0 +1,4 @@
+#!/usr/bin/env ruby
+require 'lucky_sample/cli/news'
+
+LuckySample::Cli::News.run(ARGV.dup)
