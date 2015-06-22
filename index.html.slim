@@ -132,7 +132,7 @@ html
                     = Time.at(article[:timestamp]).strftime("%D @ %T %z")
               .row
                 .body
-                  = article[:body]
+                  == IndexFormat.markdown(article[:body])
 
     .footer
       .content

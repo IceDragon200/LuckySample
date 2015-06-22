@@ -6,7 +6,7 @@ require 'yaml'
 require 'digest/md5'
 
 module IndexFormat
-  def self.md_file(filename)
+  def self.markdown(data)
     extensions = {
       autolink:            true,
       space_after_headers: true,
@@ -16,8 +16,12 @@ module IndexFormat
       superscript:         true,
       no_intra_emphasis:   true,
     }
-    markdown = Redcarpet::Markdown.new(Redcarpet::Render::HTML.new, extensions)
-    markdown.render(File.read(filename))
+    renderer = Redcarpet::Markdown.new(Redcarpet::Render::HTML.new, extensions)
+    renderer.render(data)
+  end
+
+  def self.md_file(filename)
+    markdown(File.read(filename))
   end
 
   def self.paragraphs(str)
